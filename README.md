@@ -46,6 +46,8 @@ Done (...)! For help, type "help"
 
 ## Como entrar no servidor
 
+### Voce no mesmo PC do VS Code
+
 1. Abra o painel `Ports` no VS Code/Codespaces.
 2. Procure a porta `25565`, com o label `Minecraft Server`.
 3. No VS Code Desktop, copie o `Local Address` da porta `25565`.
@@ -72,7 +74,80 @@ https://vigilant-fiesta-4jgx6j46wpj35jx7-25565.app.github.dev
 
 funciona bem para apps HTTP/HTTPS, mas nao deve ser usado como IP direto no Minecraft. O Minecraft usa um protocolo TCP proprio e normalmente vai dar timeout nesse endereco publico do Codespaces.
 
-Para outras pessoas entrarem pela internet, use um tunel TCP proprio para Minecraft, como playit.gg, ngrok TCP ou uma VPS. O Codespaces sozinho e melhor para jogar localmente pelo seu VS Code Desktop.
+### Amigos em outros PCs
+
+Para amigos entrarem pela internet, use o tunel TCP do `playit.gg`. O Codespaces sozinho nao entrega um IP publico TCP bom para Minecraft.
+
+Este projeto ja tem um servico opcional `playit` no `docker-compose.yml`. Ele usa a imagem oficial `ghcr.io/playit-cloud/playit-agent`.
+
+Passo a passo:
+
+1. Crie uma conta em https://playit.gg.
+2. No painel do playit, crie um agent do tipo Docker.
+3. Copie o `secret key` do agent.
+4. Crie o arquivo `.env` local:
+
+```bash
+cp .env.example .env
+```
+
+5. Edite o `.env` e coloque sua chave:
+
+```text
+PLAYIT_SECRET_KEY=sua-chave-do-playit-aqui
+```
+
+6. Suba o tunel:
+
+```bash
+scripts/playit-tunnel.sh start
+```
+
+7. Veja os logs:
+
+```bash
+scripts/playit-tunnel.sh logs
+```
+
+8. No painel do playit, crie um tunel para Minecraft Java apontando para:
+
+```text
+127.0.0.1:25565
+```
+
+Como o container do `playit` compartilha a rede com o container do Minecraft, `127.0.0.1:25565` do ponto de vista do playit e o proprio servidor Minecraft.
+
+O playit vai gerar um endereco publico, geralmente parecido com:
+
+```text
+alguma-coisa.playit.gg
+```
+
+ou:
+
+```text
+alguma-coisa.playit.gg:porta
+```
+
+Esse e o endereco que seus amigos colocam no Minecraft Java em `Multiplayer` > `Add Server` > `Server Address`.
+
+Comandos do tunel:
+
+```bash
+scripts/playit-tunnel.sh status
+scripts/playit-tunnel.sh start
+scripts/playit-tunnel.sh stop
+scripts/playit-tunnel.sh restart
+scripts/playit-tunnel.sh logs
+```
+
+Para deixar automatico em novos Codespaces, configure `PLAYIT_SECRET_KEY` como Codespaces secret no GitHub. Pelo terminal:
+
+```bash
+gh secret set PLAYIT_SECRET_KEY --user --app codespaces
+```
+
+Cole a chave do playit quando o GitHub CLI pedir. Depois reinicie/rebuild o Codespace.
 
 ## Como salvar o progresso do mapa
 

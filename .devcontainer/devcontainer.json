@@ -13,7 +13,7 @@
       "onAutoForward": "notify"
     }
   },
-  "postStartCommand": "AUTOSAVE_START_DELAY_SECONDS=1800 /workspaces/${localWorkspaceFolderBasename}/scripts/minecraft-autosave.sh start",
+  "postStartCommand": "AUTOSAVE_START_DELAY_SECONDS=1800 /workspaces/${localWorkspaceFolderBasename}/scripts/minecraft-autosave.sh start && /workspaces/${localWorkspaceFolderBasename}/scripts/playit-tunnel.sh auto-start",
   "overrideCommand": false,
   "shutdownAction": "stopCompose"
 }

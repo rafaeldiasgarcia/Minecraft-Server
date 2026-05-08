@@ -13,3 +13,14 @@ services:
       TZ: "America/Sao_Paulo"
     volumes:
       - ./data:/data
+
+  playit:
+    profiles:
+      - public-tunnel
+    image: ghcr.io/playit-cloud/playit-agent:latest
+    network_mode: "service:mc"
+    environment:
+      SECRET_KEY: "${PLAYIT_SECRET_KEY:-}"
+    depends_on:
+      - mc
+    restart: unless-stopped
