@@ -224,6 +224,18 @@ O arquivo `data/.gitignore` evita salvar caches, logs, jars e bibliotecas gerada
 
 ## Comandos uteis
 
+Recuperar quando cair:
+
+```bash
+docker compose --profile public-tunnel up -d mc playit
+```
+
+Ver se esta tudo rodando:
+
+```bash
+docker compose --profile public-tunnel ps
+```
+
 Parar o servidor:
 
 ```bash
