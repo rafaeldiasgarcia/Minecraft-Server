@@ -59,17 +59,19 @@ playit_running() {
 }
 
 watch_loop() {
+  set +e
+
   if ! has_secret; then
     echo "PLAYIT_SECRET_KEY not configured; watchdog exiting"
     exit 0
   fi
 
-  start
+  start || echo "$(date -Is) failed to start playit; watchdog will keep retrying"
   last_mc_id="$(mc_container_id)"
   echo "playit watchdog started; mc=$last_mc_id"
 
   while :; do
-    sleep "$WATCH_INTERVAL_SECONDS"
+    sleep "$WATCH_INTERVAL_SECONDS" || true
     current_mc_id="$(mc_container_id)"
 
     if [ -z "$current_mc_id" ]; then
@@ -79,14 +81,14 @@ watch_loop() {
 
     if [ "$current_mc_id" != "$last_mc_id" ]; then
       echo "$(date -Is) mc container changed; recreating playit tunnel"
-      restart_playit
+      restart_playit || echo "$(date -Is) failed to recreate playit tunnel"
       last_mc_id="$current_mc_id"
       continue
     fi
 
     if ! playit_running; then
       echo "$(date -Is) playit is not running; starting tunnel"
-      restart_playit
+      restart_playit || echo "$(date -Is) failed to start playit tunnel"
     fi
   done
 }
