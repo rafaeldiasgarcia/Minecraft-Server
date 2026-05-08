@@ -1,2 +1,4 @@
 .minecraft-autosave.log
+.playit-watchdog.log
+.playit-watchdog.pid
 .env

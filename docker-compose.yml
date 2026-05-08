@@ -10,20 +10,35 @@ services:
       EULA: "TRUE"
       TYPE: "PAPER"
       VERSION: "LATEST"
-      MEMORY: "4G"
+      MEMORY: "2G"
       TZ: "America/Sao_Paulo"
       ONLINE_MODE: "FALSE"
       ENFORCE_SECURE_PROFILE: "FALSE"
+      VIEW_DISTANCE: "6"
+      SIMULATION_DISTANCE: "4"
+      MAX_PLAYERS: "8"
     volumes:
       - ./data:/data
+    networks:
+      mcnet:
+        ipv4_address: 172.30.0.10
+    healthcheck:
+      disable: true
 
   playit:
     profiles:
       - public-tunnel
     image: ghcr.io/playit-cloud/playit-agent:latest
-    network_mode: "service:mc"
     environment:
       SECRET_KEY: "${PLAYIT_SECRET_KEY:-}"
     depends_on:
       - mc
     restart: unless-stopped
+    networks:
+      - mcnet
+
+networks:
+  mcnet:
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24

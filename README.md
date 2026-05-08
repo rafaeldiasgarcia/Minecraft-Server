@@ -2,6 +2,8 @@
 
 Servidor de Minecraft Java automatizado com Docker Compose dentro do GitHub Codespaces, usando a imagem `itzg/minecraft-server`.
 
+O perfil atual esta ajustado para Codespaces: `MEMORY=2G`, `view-distance=6`, `simulation-distance=4` e limite de 8 jogadores. Isso reduz quedas por falta de memoria/CPU quando varias pessoas exploram chunks ao mesmo tempo.
+
 ## Estrutura
 
 ```text
@@ -125,10 +127,10 @@ scripts/playit-tunnel.sh logs
 8. No painel do playit, crie um tunel para Minecraft Java apontando para:
 
 ```text
-127.0.0.1:25565
+172.30.0.10:25565
 ```
 
-Como o container do `playit` compartilha a rede com o container do Minecraft, `127.0.0.1:25565` do ponto de vista do playit e o proprio servidor Minecraft.
+O container do Minecraft recebe o IP fixo `172.30.0.10` na rede Docker interna. Assim o tunel continua apontando para o servidor certo mesmo quando os containers sao recriados.
 
 O playit vai gerar um endereco publico, geralmente parecido com:
 
@@ -151,7 +153,18 @@ scripts/playit-tunnel.sh status
 scripts/playit-tunnel.sh start
 scripts/playit-tunnel.sh stop
 scripts/playit-tunnel.sh restart
+scripts/playit-tunnel.sh watch-status
 scripts/playit-tunnel.sh logs
+```
+
+Quando `PLAYIT_SECRET_KEY` esta configurado, o Codespace tambem inicia um watchdog do playit automaticamente. Ele recria o container do tunel se o container `mc` reiniciar ou se o proprio playit parar.
+
+Para controlar esse watchdog manualmente:
+
+```bash
+scripts/playit-tunnel.sh watch-start
+scripts/playit-tunnel.sh watch-stop
+scripts/playit-tunnel.sh watch-status
 ```
 
 Para deixar automatico em novos Codespaces, configure `PLAYIT_SECRET_KEY` como Codespaces secret no GitHub. Pelo terminal:
@@ -227,7 +240,9 @@ O arquivo `data/.gitignore` evita salvar caches, logs, jars e bibliotecas gerada
 Recuperar quando cair:
 
 ```bash
-docker compose --profile public-tunnel up -d mc playit
+docker compose --profile public-tunnel up -d mc
+scripts/playit-tunnel.sh restart
+scripts/playit-tunnel.sh watch-start
 ```
 
 Ver se esta tudo rodando:
