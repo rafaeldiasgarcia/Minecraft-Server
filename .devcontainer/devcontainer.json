@@ -1,0 +1,19 @@
+{
+  "name": "Minecraft Server",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "mc",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "forwardPorts": [
+    25565
+  ],
+  "portsAttributes": {
+    "25565": {
+      "label": "Minecraft Server",
+      "visibility": "public",
+      "onAutoForward": "notify"
+    }
+  },
+  "postStartCommand": "AUTOSAVE_START_DELAY_SECONDS=1800 /workspaces/${localWorkspaceFolderBasename}/scripts/minecraft-autosave.sh start",
+  "overrideCommand": false,
+  "shutdownAction": "stopCompose"
+}
