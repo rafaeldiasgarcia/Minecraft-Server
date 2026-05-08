@@ -11,6 +11,8 @@ services:
       VERSION: "LATEST"
       MEMORY: "4G"
       TZ: "America/Sao_Paulo"
+      ONLINE_MODE: "FALSE"
+      ENFORCE_SECURE_PROFILE: "FALSE"
     volumes:
       - ./data:/data
 

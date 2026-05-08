@@ -16,6 +16,19 @@ Servidor de Minecraft Java automatizado com Docker Compose dentro do GitHub Code
 
 O volume `./data:/data` guarda o mundo e as configuracoes do servidor. Tudo que o Minecraft gerar ali pode ser salvo no Git.
 
+## Modo de autenticacao
+
+O servidor esta configurado em `offline-mode`:
+
+```text
+online-mode=false
+enforce-secure-profile=false
+```
+
+Isso permite conexoes sem validacao oficial da Microsoft/Mojang. E util para jogar com amigos que usam launchers sem sessao oficial, mas reduz a seguranca: qualquer pessoa pode tentar entrar usando qualquer nickname.
+
+Recomendacao: se o endereco publico vazar, ative whitelist e libere apenas os nicks dos seus amigos.
+
 ## Como rodar
 
 Ao criar ou rebuildar o Codespace, o Dev Container usa o `docker-compose.yml` e sobe o servico `mc` automaticamente.
