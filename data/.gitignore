@@ -1,0 +1,15 @@
+.cache/
+cache/
+libraries/
+logs/
+versions/
+crash-reports/
+*.jar
+*.log
+session.lock
+.paper.env
+.papermc-manifest.json
+.rcon-cli.env
+.rcon-cli.yaml
+plugins/bStats/
+plugins/spark/tmp/
