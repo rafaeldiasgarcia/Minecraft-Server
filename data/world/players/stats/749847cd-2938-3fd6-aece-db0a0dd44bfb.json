@@ -1,0 +1,100 @@
+{
+  "stats": {
+    "minecraft:used": {
+      "minecraft:stone_axe": 26,
+      "minecraft:rotten_flesh": 2,
+      "minecraft:stone_sword": 14,
+      "minecraft:cooked_beef": 3,
+      "minecraft:leaf_litter": 4,
+      "minecraft:crafting_table": 1,
+      "minecraft:wooden_sword": 13,
+      "minecraft:wooden_pickaxe": 11,
+      "minecraft:stone_pickaxe": 18,
+      "minecraft:cooked_chicken": 2
+    },
+    "minecraft:crafted": {
+      "minecraft:stone_sword": 2,
+      "minecraft:stick": 8,
+      "minecraft:cooked_beef": 3,
+      "minecraft:stone_axe": 1,
+      "minecraft:cooked_chicken": 4,
+      "minecraft:spruce_planks": 12,
+      "minecraft:stone_pickaxe": 2,
+      "minecraft:air": 0
+    },
+    "minecraft:dropped": {
+      "minecraft:rotten_flesh": 5,
+      "minecraft:spruce_sapling": 1,
+      "minecraft:arrow": 1,
+      "minecraft:wooden_sword": 1,
+      "minecraft:stone_sword": 1,
+      "minecraft:string": 1,
+      "minecraft:stone_pickaxe": 1,
+      "minecraft:bone": 1
+    },
+    "minecraft:custom": {
+      "minecraft:interact_with_crafting_table": 3,
+      "minecraft:time_since_rest": 17554,
+      "minecraft:walk_one_cm": 59289,
+      "minecraft:leave_game": 1,
+      "minecraft:horse_one_cm": 96,
+      "minecraft:mob_kills": 7,
+      "minecraft:damage_taken": 1590,
+      "minecraft:play_time": 24459,
+      "minecraft:damage_dealt": 1561,
+      "minecraft:jump": 450,
+      "minecraft:time_since_death": 17527,
+      "minecraft:drop": 12,
+      "minecraft:interact_with_furnace": 6,
+      "minecraft:sprint_one_cm": 99949,
+      "minecraft:fall_one_cm": 15550,
+      "minecraft:total_world_time": 24459,
+      "minecraft:fly_one_cm": 120952,
+      "minecraft:crouch_one_cm": 457,
+      "minecraft:sneak_time": 60,
+      "minecraft:deaths": 5
+    },
+    "minecraft:killed": {
+      "minecraft:zombie": 4,
+      "minecraft:zombie_horse": 1,
+      "minecraft:creeper": 1,
+      "minecraft:chicken": 1
+    },
+    "minecraft:picked_up": {
+      "minecraft:spruce_planks": 21,
+      "minecraft:tipped_arrow": 1,
+      "minecraft:dirt": 19,
+      "minecraft:spruce_sapling": 3,
+      "minecraft:wooden_pickaxe": 1,
+      "minecraft:stick": 4,
+      "minecraft:cobblestone": 24,
+      "minecraft:wooden_sword": 2,
+      "minecraft:chicken": 1,
+      "minecraft:crafting_table": 2,
+      "minecraft:bone": 1,
+      "minecraft:arrow": 1,
+      "minecraft:oak_sapling": 1,
+      "minecraft:rotten_flesh": 13,
+      "minecraft:spruce_log": 3,
+      "minecraft:leaf_litter": 4,
+      "minecraft:string": 1,
+      "minecraft:oak_log": 23,
+      "minecraft:furnace": 3
+    },
+    "minecraft:killed_by": {
+      "minecraft:zombie": 5
+    },
+    "minecraft:mined": {
+      "minecraft:short_grass": 1,
+      "minecraft:furnace": 3,
+      "minecraft:dirt": 14,
+      "minecraft:spruce_log": 2,
+      "minecraft:crafting_table": 2,
+      "minecraft:leaf_litter": 2,
+      "minecraft:oak_log": 23,
+      "minecraft:grass_block": 4,
+      "minecraft:stone": 26
+    }
+  },
+  "DataVersion": 4790
+}
