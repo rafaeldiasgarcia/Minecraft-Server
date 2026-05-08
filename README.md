@@ -48,36 +48,31 @@ Done (...)! For help, type "help"
 
 1. Abra o painel `Ports` no VS Code/Codespaces.
 2. Procure a porta `25565`, com o label `Minecraft Server`.
-3. Confirme que a visibilidade esta como `Public`.
-4. Copie o endereco encaminhado da porta `25565`.
-5. No Minecraft Java, va em `Multiplayer` > `Add Server`.
-6. No campo `Server Address`, cole o endereco da porta.
+3. No VS Code Desktop, copie o `Local Address` da porta `25565`.
+4. No Minecraft Java, va em `Multiplayer` > `Add Server`.
+5. No campo `Server Address`, use o endereco local copiado.
 
-Se o endereco copiado vier como uma URL, por exemplo:
-
-```text
-https://NOME-DO-CODESPACE-25565.app.github.dev
-```
-
-teste no Minecraft sem o prefixo `https://`:
+Na maioria dos casos, usando o VS Code Desktop conectado ao Codespace, o endereco sera:
 
 ```text
-NOME-DO-CODESPACE-25565.app.github.dev
+localhost:25565
 ```
 
-Neste Codespace atual, a porta `25565` esta publica em:
+ou:
+
+```text
+127.0.0.1:25565
+```
+
+Importante: o endereco publico do Codespaces, como este:
 
 ```text
 https://vigilant-fiesta-4jgx6j46wpj35jx7-25565.app.github.dev
 ```
 
-Entao, no Minecraft, tente usar:
+funciona bem para apps HTTP/HTTPS, mas nao deve ser usado como IP direto no Minecraft. O Minecraft usa um protocolo TCP proprio e normalmente vai dar timeout nesse endereco publico do Codespaces.
 
-```text
-vigilant-fiesta-4jgx6j46wpj35jx7-25565.app.github.dev
-```
-
-Observacao: o Codespaces encaminha portas e mostra o endereco pelo painel `Ports`. Se o cliente do Minecraft nao aceitar o endereco publico do Codespaces, abra o Codespace no VS Code Desktop e use o endereco local encaminhado que aparecer no painel `Ports`, normalmente algo como `localhost:25565`.
+Para outras pessoas entrarem pela internet, use um tunel TCP proprio para Minecraft, como playit.gg, ngrok TCP ou uma VPS. O Codespaces sozinho e melhor para jogar localmente pelo seu VS Code Desktop.
 
 ## Como salvar o progresso do mapa
 
